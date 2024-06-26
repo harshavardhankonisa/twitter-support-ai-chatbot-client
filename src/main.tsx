@@ -20,7 +20,7 @@ import axios from "axios";
 import Markdown from "react-markdown";
 import { v4 as uuidv4 } from "uuid";
 
-const apiBaseURL = "http://localhost:8000";
+const apiBaseURL = "https://twitter-customer-support.azurewebsites.net/"
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
