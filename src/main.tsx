@@ -30,7 +30,7 @@ const App = () => {
       sender: string;
     }[]
   >([]);
-  console.log(history);
+
   const [sessionId, setSessionId] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -132,7 +132,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box
-        position="fixed"
+        position="absolute"
         top={0}
         bottom={0}
         left={0}
@@ -199,22 +199,14 @@ const App = () => {
             }}
           >
             {history.map((message: any, index) => (
-              <Box key={index}>
-                <Typography variant="body1" sx={{ my: 1 }}>
-                  {message.sender === "user" ? (
-                    <Typography component="span" fontWeight="bold">
-                      You:
-                    </Typography>
-                  ) : (
-                    <Typography component="span" color="primary">
-                      Bot:
-                    </Typography>
-                  )}
-                </Typography>
-                {message.sender === "bot" ? (
+              <Box key={index} sx={{paddingTop: index%2===0 ? "30px" : "0"}}>
+                {message.sender === "user" && (
+                  <Typography component="span" fontWeight="bold" color='secondary'>
+                    You:{" "}{message.text}
+                  </Typography>
+                )}
+                {message.sender === "bot" && (
                   <Markdown>{message.text}</Markdown>
-                ) : (
-                  message.text
                 )}
               </Box>
             ))}
